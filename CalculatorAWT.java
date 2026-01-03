@@ -1,53 +1,40 @@
+Implement AWT Calculator with basic operations
 import java.awt.*;
 import java.awt.event.*;
 
-public class CalculatorAWT extends Frame implements ActionListener {
-
+public class CalAWT extends Frame implements ActionListener {
     TextField tf;
-    Button add, sub, mul, div, clr;
+    Button add, sub, mul, div, cl;
     double num1, num2, result;
     String operator;
-
-    CalculatorAWT() {
-        
+    CalAWT(){
         tf = new TextField();
         tf.setBounds(50, 50, 200, 30);
-
-        
         add = new Button("+");
         sub = new Button("-");
         mul = new Button("*");
         div = new Button("/");
-        clr = new Button("C");
-
+        cl = new Button("C");
         add.setBounds(50, 100, 40, 40);
         sub.setBounds(100, 100, 40, 40);
         mul.setBounds(150, 100, 40, 40);
         div.setBounds(200, 100, 40, 40);
-        clr.setBounds(125, 160, 50, 40);
-
-        
+        cl.setBounds(125, 160, 50, 40);
         add(tf);
         add(add);
         add(sub);
         add(mul);
         add(div);
-        add(clr);
-
-        
+        add(cl);
         add.addActionListener(this);
         sub.addActionListener(this);
         mul.addActionListener(this);
         div.addActionListener(this);
-        clr.addActionListener(this);
-
-        
+        cl.addActionListener(this);
         setTitle("AWT Calculator");
         setSize(300, 250);
         setLayout(null);
         setVisible(true);
-
-        
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 dispose();
@@ -58,7 +45,7 @@ public class CalculatorAWT extends Frame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         try {
-            if (e.getSource() == clr) {
+            if (e.getSource() == cl) {
                 tf.setText("");
                 return;
             }
@@ -86,12 +73,12 @@ public class CalculatorAWT extends Frame implements ActionListener {
             tf.setText(String.valueOf(result));
 
         } catch (ArithmeticException ae) {
-            tf.setText("Error: ÷ by 0");
+            tf.setText("Error: Ã· by 0");
         } catch (Exception ex) {
             tf.setText("Invalid Input");
         }
 
-        if (e.getSource() != clr) {
+        if (e.getSource() != cl) {
             try {
                 num1 = Double.parseDouble(tf.getText());
                 operator = ((Button) e.getSource()).getLabel();
@@ -101,8 +88,6 @@ public class CalculatorAWT extends Frame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new CalculatorAWT();
+        new CalAWT();
     }
 }
-
-
